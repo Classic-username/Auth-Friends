@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-// import {axiosWithAuth}
+import {axiosWithAuth} from '../utils/axiosWithAuth'
 
 const Login = () => {
     const [ credentials, setCredentials ] = useState({credentials: {
@@ -8,7 +8,7 @@ const Login = () => {
         password: ''
     }})
 
-    handleChange = e => {
+    const handleChange = e => {
         setCredentials({
             credentials: {
                 ...credentials,
@@ -17,10 +17,13 @@ const Login = () => {
         })
     }
 
-    login = e => {
+    const login = e => {
         e.preventDefault();
 
-        // axiosWithAuth()
+        axiosWithAuth()
+            .post('/login', credentials)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
             
     }
 
@@ -44,3 +47,5 @@ const Login = () => {
         </div>
     )
 }
+
+export default Login;
