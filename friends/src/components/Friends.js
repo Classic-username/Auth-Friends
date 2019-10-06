@@ -5,21 +5,30 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { getSnapshotData } from 'jest-snapshot/build/utils';
 
 const Friends = () => {
-    const [friends, setFriends] = useState({friendArr: []})
+    const [friends, setFriends] = useState([])
 
-    const getData = () => {
-        axiosWithAuth()
-            .get('/data')
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
-    }
+        
+    
 
     useEffect(() => {
-        getData()
+        axiosWithAuth()
+            .get('/friends')
+            .then(res => setFriends(res.data))
+            .catch(err => console.log(err))
     }, [])
 
     return(
-        <div></div>
+        friends.map(FUCKNAMESEMANTICBULLSHIT => {
+            return(
+                <div>
+                    <h2>{FUCKNAMESEMANTICBULLSHIT.name}</h2>
+                    <p>{FUCKNAMESEMANTICBULLSHIT.age}</p>
+                    <p>{FUCKNAMESEMANTICBULLSHIT.email}</p>
+                </div>
+            )
+            
+        })
+        //Friend form here
     )
 }
 
