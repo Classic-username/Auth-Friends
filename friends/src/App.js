@@ -15,7 +15,7 @@ function App() {
             <Link to='/login'>Login</Link>
           </li>
           <li>
-            <Link to='/friend_list'></Link>
+            <Link to='/friend_list'>LOG IN FIRST</Link>
           </li>
         </ul>
         <Switch>
