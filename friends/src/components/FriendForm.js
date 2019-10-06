@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axiosWithAuth from "../utils/axiosWithAuth";
+import {axiosWithAuth} from "../utils/axiosWithAuth";
 
 const FriendForm = props => {
   const [friendVal, setFriendVal] = useState({
@@ -19,7 +19,10 @@ const FriendForm = props => {
   const addFriend = e => {
       e.preventDefault();
 
-        
+        axiosWithAuth()
+            .post('/friends', friendVal)
+            .then(res => props.setFriends(res.data))
+            .catch(err => console.log(err))
   }
 
   return (
@@ -49,7 +52,10 @@ const FriendForm = props => {
           onChange={handleChange}
           value={friendVal.email}
         />
+        <button>Add friend</button>
       </form>
     </div>
   );
 };
+
+export default FriendForm;
